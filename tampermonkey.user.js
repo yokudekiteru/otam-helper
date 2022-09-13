@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OTAM Helper
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.1.1
 // @description  try to take over the world!
 // @author       ogw.tttt@gmail.com
 // @match        https://*.o-tam.jp/*
@@ -20,7 +20,7 @@
 }
 `));
   document.getElementsByTagName('head')[0].appendChild(userStyleEl);
-  const v = document.querySelector('video'), marker = document.querySelector('button#inOutDecide');
+  const v = document.querySelector('video'), marker = document.getElementById('controller');
   if (v === null || v.style.display === 'none' || marker === null) return;
   const capture = function() {
     const playButton = document.getElementById('play');
@@ -51,5 +51,5 @@
   captureButton.classList.add('btn-dark');
   captureButton.addEventListener('click', capture);
   buttonContainer.appendChild(captureButton);
-  marker.parentNode.parentNode.insertBefore(buttonContainer, marker.parentNode.nextSibling);
+  marker.appendChild(buttonContainer);
 })();
