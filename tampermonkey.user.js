@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OTAM Helper
 // @namespace    http://tampermonkey.net/
-// @version      0.1.1
+// @version      0.1.2
 // @description  try to take over the world!
 // @author       ogw.tttt@gmail.com
 // @match        https://*.o-tam.jp/*
@@ -34,9 +34,9 @@
     c.getContext('2d').drawImage(v, 0, 0, c.width, c.height);
     i.src = c.toDataURL('image/jpeg');
     if (i.src === 'data:,') return;
-    const sozainum = location.search.split('sozainum=')[1].split('&')[0];
+    const title = decodeURIComponent(location.search.split('title=')[1].split('&')[0]);
     const tc = document.querySelector('.irs-single').innerText;
-    a.download = `${sozainum}_${tc}.jpeg`;
+    a.download = `${title}_${tc}.jpeg`;
     a.target = '_blank';
     a.href = i.src;
     a.click();
